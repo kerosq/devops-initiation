@@ -13,7 +13,7 @@
 			<url>http://www.opensource.org/licenses/mit-license.php</url>
 		</license>
 	</licenses>
-	
+
 	<developers>
 		<developer>
 			<name>Kevin</name>
@@ -41,7 +41,7 @@
 		<deploy>${project.artifactId}-${project.version}</deploy>
 		<!-- Maven -->
 		<timestamp>${maven.build.timestamp}</timestamp>
-		<maven.build.timestamp.format>yyyy-MM-dd-HH:mm:ss</maven.build.timestamp.format>
+		<maven.build.timestamp.format>yyyy-MM-dd-HHmmss</maven.build.timestamp.format>
 		<!-- Maven. integration test -->
 		<maven-surefire-plugin.version>2.21.0</maven-surefire-plugin.version>
 		<maven-failsafe-plugin.version>2.21.0</maven-failsafe-plugin.version>
@@ -71,10 +71,31 @@
 						<manifest>
 							<addClasspath>true</addClasspath>
 							<classpathPrefix>lib/</classpathPrefix>
-							<mainClass>prueba.Iniciar</mainClass>
+							<mainClass>principal.Launch</mainClass>
 						</manifest>
 					</archive>
 				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>exec-maven-plugin</artifactId>
+				<version>1.1.1</version>
+				<executions>
+					<execution>
+						<phase>test</phase>
+						<goals>
+							<goal>java</goal>
+						</goals>
+						<configuration>
+							<mainClass>principal.Launch</mainClass>
+							<arguments>
+								<argument>arg0</argument>
+								<argument>arg1</argument>
+							</arguments>
+						</configuration>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>
